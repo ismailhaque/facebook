@@ -16,36 +16,44 @@ const userSchema = mongoose.Schema({
     },
     secondary_name : {
         type : String,
-        required : true,
         trim : true,
+        default : ''
     },
     username : {
         type : String,
-        trim : true
+        trim : true,
+        default : ''
     },
     email : {
         type : String,
-        unique : true,
-        trim : true
+        trim : true,
+        default : ''
     },
     phone : {
         type : String,
         trim : true,
-        unique : true
+        default : ''
     },
     password : {
         type : String,
         required : true
     },
-    gander : {
+    gender : {
         type : String,
         required : true,
         enum : ['Female', 'Male', 'Custom']
     },
     brith_date : {
         type : String,
-        required : true,
-        trim : true
+        required : true
+    },
+    brith_month : {
+        type : String,
+        required : true
+    },
+    brith_year : {
+        type : String,
+        required : true
     },
     profile_photo : {
         type : String,
@@ -58,7 +66,7 @@ const userSchema = mongoose.Schema({
     bio : {
         type : String,
         trim : true,
-        default : null
+        default : ''
     },
     hobbies : {
         type : Array,
@@ -78,11 +86,11 @@ const userSchema = mongoose.Schema({
     },
     living : {
         type : String,
-        default : null
+        default : ''
     },
     home_town : {
         type : String,
-        default : null
+        default : ''
     },
     relationship : {
         type : String,
@@ -99,11 +107,11 @@ const userSchema = mongoose.Schema({
         type : Array,
         default : []
     },
-    flowing  : {
+    following  : {
         type : Array,
         default : []
     },
-    flowers  : {
+    followers  : {
         type : Array,
         default : []
     },
@@ -118,6 +126,10 @@ const userSchema = mongoose.Schema({
     post  : {
         type : Array,
         default : []
+    },
+    code  : {
+        type : String,
+        default : ''
     },
     isActivate : {
         type : Boolean,

@@ -1,30 +1,37 @@
 import nodemailer from 'nodemailer'
 
+/**
+ * @name mail send
+ * @param {*} to 
+ * @param {*} subject 
+ * @param {*} msg 
+ * @param {*} next 
+ */
 
-export const sendMail = async (to, subject, text) => {
+export const sendMail = async (to, subject, msg, next) => {
 
     try {
 
         let transport = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 587,
+            host: process.env.MAIL_HOST,
+            port: process.env.MAIL_PORT,
             auth: {
-                user: "ismailhaque2956@gmail.com",
-                pass: "ttquwcefulwmpqhp"
+                user: process.env.MAIL_ID,
+                pass: process.env.MAIL_KEY
             }
         });
 
         await transport.sendMail({
 
-            from : 'ismailhaque2956@gmail.com',
-            to : to,
-            subject : subject,
-            text : text
+            from: `Facebook<${process.env.MAIL_ID}>`,
+            subject: subject,
+            to: to,
+            html: msg
 
         })
 
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 
 }

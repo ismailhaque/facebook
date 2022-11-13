@@ -1,14 +1,27 @@
 import jwt from "jsonwebtoken";
 
-
-export const createToken = (data) =>{
+/**
+ * @name create token
+ * @param {*} payload 
+ * @param {*} exp 
+ * @returns 
+ */
+export const createToken = (payload, exp) =>{
     
-    return jwt.sign(data, 'GGLBb8VxNVDWjjh5paC+d/sTEiFgo3tu2bzQM/2KRKMmKm88uL+Br++0ZFnnewnzFmheI+L4ZlBsNf/lD6VT+Q==');
+    return jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn : exp
+    });
 
 }
 
+
+/**
+ * @name verify token
+ * @param {*} token 
+ * @returns 
+ */
 export const verifyToken = (token) =>{
 
-    return jwt.verify(token, 'GGLBb8VxNVDWjjh5paC+d/sTEiFgo3tu2bzQM/2KRKMmKm88uL+Br++0ZFnnewnzFmheI+L4ZlBsNf/lD6VT+Q==');
+    return jwt.verify(token, process.env.JWT_SECRET);
 
 }
