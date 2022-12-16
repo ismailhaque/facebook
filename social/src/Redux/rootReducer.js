@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
+import AuthReducer from './Auth/AuthReducer.js'
 
 // create root reducer
 const rootReducer = combineReducers({
 
-    fb : '',
-    chat : ''
+    auth : AuthReducer
 
 })
 
